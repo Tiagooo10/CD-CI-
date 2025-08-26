@@ -16,4 +16,4 @@ jobs:
           node-version: "18"
 
       - name: Ejecutar tests
-        run: node tests/test.js
+        run: node test/test.js
