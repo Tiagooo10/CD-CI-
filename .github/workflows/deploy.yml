@@ -22,4 +22,3 @@ jobs:
             cd ~/lemp-sites/tiago_pescara/CD-CI
             git pull origin main
 EOF
-
