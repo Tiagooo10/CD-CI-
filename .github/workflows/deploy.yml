@@ -7,11 +7,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # opcional: solo desplegar si el CI pasó (si usás ambos archivos, GitHub ya corre CI antes)
-    # needs: [test]
 
     steps:
-      - name: Preparar SSH (clave desde secreto)
+      - name: Preparar SSH
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
@@ -20,7 +18,8 @@ jobs:
 
       - name: Conectarse al servidor y actualizar código
         run: |
-          ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=yes alumno@137.184.127.11 "
-            cd ~/lemp-sites/valentin_belone/TU_REPO && \
+          ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=yes alumno@137.184.127.11 << 'EOF'
+            cd ~/lemp-sites/tiago_pescara/CD-CI
             git pull origin main
-          "
+EOF
+
